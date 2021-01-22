@@ -13,14 +13,16 @@ var core = require('@rjsf/core');
 
 var DescriptionField = function DescriptionField(_ref) {
   var description = _ref.description;
-  // if (!description) {
-  //   return null;
-  // }
-  return React.createElement(react.Text, {
-    fontSize: "sm",
-    mb: 2,
-    opacity: "0.9"
-  }, description);
+
+  if (description) {
+    return React.createElement(react.Text, {
+      fontSize: "sm",
+      mb: 2,
+      opacity: "0.9"
+    }, description);
+  }
+
+  return null;
 };
 
 var TitleField = function TitleField(_ref) {
@@ -391,26 +393,6 @@ var ErrorList = function ErrorList(_ref) {
   })));
 };
 
-// type TWidgetProps = WidgetProps & {
-//   schema: JSONSchema7 & {
-//     examples:
-//       | string
-//       | number
-//       | boolean
-//       | JSONSchema7Object
-//       | JSONSchema7Array
-//       | string[]
-//       | any;
-//   };
-// };
-// type ExtInputProps = InputProps & {
-//   list: string | undefined;
-//   // onChange: any;
-//   // onBlur: any;
-//   // onFocus: any;
-// };
-// type TBaseInput = TWidgetProps & ExtInputProps;
-
 var BaseInput = function BaseInput(_ref) {
   var id = _ref.id,
       props = _objectWithoutPropertiesLoose(_ref, ["id"]);
@@ -491,7 +473,14 @@ var BaseInput = function BaseInput(_ref) {
     onFocus: onFocus && function (event) {
       return onFocus(inputProps.id, event.target.value);
     }
-  })));
+  })), schema.examples ? React.createElement("datalist", {
+    id: "examples_" + inputProps.id
+  }, Array.from(new Set(schema.examples.concat(schema["default"] ? [schema["default"]] : []))).map(function (example) {
+    return React.createElement("option", {
+      key: example,
+      value: example
+    });
+  })) : null);
 };
 
 BaseInput.defaultProps = {
@@ -830,10 +819,30 @@ SelectWidget.defaultProps = {
   disabled: false,
   readonly: false,
   multiple: false,
-  onChange: function onChange() {},
-  onBlur: function onBlur() {},
-  onFocus: function onFocus() {}
-}; // if ("development" !== "production") {
+  onChange: null,
+  onBlur: null,
+  onFocus: null
+};
+
+{
+  SelectWidget.propTypes = {
+    // eslint-disable-next-line react/forbid-prop-types
+    schema: PropTypes.object.isRequired,
+    id: PropTypes.string.isRequired,
+    options: /*#__PURE__*/PropTypes.shape({
+      enumOptions: PropTypes.array
+    }).isRequired,
+    // value: PropTypes.any,
+    required: PropTypes.bool,
+    disabled: PropTypes.bool,
+    readonly: PropTypes.bool,
+    multiple: PropTypes.bool,
+    autofocus: PropTypes.bool,
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func
+  };
+}
 
 var TextareaWidget = function TextareaWidget(_ref) {
   var id = _ref.id,
