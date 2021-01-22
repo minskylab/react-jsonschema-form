@@ -1,7 +1,7 @@
-import { Box } from '@chakra-ui/core'
-import { Stack } from '@chakra-ui/core'
-import { ObjectFieldTemplateProps } from '@rjsf/core'
-import React from 'react'
+import { Box } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
+import { ObjectFieldTemplateProps } from "@rjsf/core";
+import React from "react";
 
 const ObjectFieldTemplate = ({
   DescriptionField,
@@ -11,19 +11,30 @@ const ObjectFieldTemplate = ({
   properties,
   required,
   uiSchema,
-  idSchema
+  idSchema,
 }: ObjectFieldTemplateProps) => (
-    <>
-      {(uiSchema['ui:title'] || title) && <TitleField id={`${idSchema.$id}-title`} title={title} required={required} />}
-      {description && <DescriptionField id={`${idSchema.$id}-description`} description={description} />}
-      <Stack spacing={2} mt={3}>
-        {properties.map((element, index) => (
-          <Box key={[element.content, index].join('_')} mb={3}>
-            {element.content}
-          </Box>
-        ))}
-      </Stack>
-    </>
-  )
+  <>
+    {(uiSchema["ui:title"] || title) && (
+      <TitleField
+        id={`${idSchema.$id}-title`}
+        title={title}
+        required={required}
+      />
+    )}
+    {description && (
+      <DescriptionField
+        id={`${idSchema.$id}-description`}
+        description={description}
+      />
+    )}
+    <Stack spacing={2} mt={3}>
+      {properties.map((element, index) => (
+        <Box key={[element.content, index].join("_")} mb={3}>
+          {element.content}
+        </Box>
+      ))}
+    </Stack>
+  </>
+);
 
-export default ObjectFieldTemplate
+export default ObjectFieldTemplate;

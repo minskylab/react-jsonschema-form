@@ -5,9 +5,9 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-} from "@chakra-ui/core";
-import { WidgetProps, utils } from '@rjsf/core';
-const { rangeSpec } = utils
+} from "@chakra-ui/react";
+import { WidgetProps, utils } from "@rjsf/core";
+const { rangeSpec } = utils;
 const RangeWidget = ({
   value,
   readonly,
@@ -24,8 +24,11 @@ const RangeWidget = ({
 
   const _onChange = (value: undefined | number) =>
     onChange(value === undefined ? options.emptyValue : value);
-  const _onBlur = ({ target: { value } }: React.FocusEvent<HTMLInputElement>) => onBlur(id, value);
-  const _onFocus = ({ target: { value } }: React.FocusEvent<HTMLInputElement>) => onFocus(id, value);
+  const _onBlur = ({ target: { value } }: React.FocusEvent<HTMLInputElement>) =>
+    onBlur(id, value);
+  const _onFocus = ({
+    target: { value },
+  }: React.FocusEvent<HTMLInputElement>) => onFocus(id, value);
 
   return (
     <Slider
@@ -33,8 +36,7 @@ const RangeWidget = ({
       isDisabled={disabled || readonly}
       onChange={_onChange}
       onBlur={_onBlur}
-      onFocus={_onFocus}
-    >
+      onFocus={_onFocus}>
       <SliderTrack />
       <SliderFilledTrack />
       <SliderThumb />

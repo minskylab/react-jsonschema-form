@@ -1,4 +1,4 @@
-import { CheckboxGroup, Checkbox, FormLabel } from "@chakra-ui/core";
+import { CheckboxGroup, Checkbox, FormLabel } from "@chakra-ui/react";
 import { WidgetProps } from "@rjsf/core";
 import React from "react";
 
@@ -37,38 +37,42 @@ const CheckboxesWidget = ({
   //   }
   // }
 
-  const _onBlur = ({ target: { value } }: React.FocusEvent<HTMLInputElement>) => onBlur(id, value);
-  const _onFocus = ({ target: { value } }: React.FocusEvent<HTMLInputElement>) => onFocus(id, value);
+  const _onBlur = ({ target: { value } }: React.FocusEvent<HTMLInputElement>) =>
+    onBlur(id, value);
+  const _onFocus = ({
+    target: { value },
+  }: React.FocusEvent<HTMLInputElement>) => onFocus(id, value);
 
   return (
     <CheckboxGroup onChange={(option) => onChange(option)}>
-      {(enumOptions as any).map((option: { value: any; label: any; }, index: any) => {
-        const checked = value.indexOf(option.value) !== -1;
-        const itemDisabled =
-          enumDisabled && (enumDisabled as string[]).indexOf(option.value) !== -1;
-        return (
-          <Checkbox
-            key={`${id}_${index}`}
-            id={`${id}_${index}`}
-            value={option.value}
-            isChecked={checked}
-            isDisabled={disabled || itemDisabled || readonly}
-            onBlur={_onBlur}
-            paddingTop="0"
-            display="inline-flex"
-            onFocus={_onFocus}
-          >
-            <FormLabel
-              fontWeight="400"
-              htmlFor={`${id}_${index}`}
+      {(enumOptions as any).map(
+        (option: { value: any; label: any }, index: any) => {
+          const checked = value.indexOf(option.value) !== -1;
+          const itemDisabled =
+            enumDisabled &&
+            (enumDisabled as string[]).indexOf(option.value) !== -1;
+          return (
+            <Checkbox
+              key={`${id}_${index}`}
+              id={`${id}_${index}`}
+              value={option.value}
+              isChecked={checked}
+              isDisabled={disabled || itemDisabled || readonly}
+              onBlur={_onBlur}
+              paddingTop="0"
               display="inline-flex"
-              fontSize="0.9rem"
-            >
-              {option.label}
-            </FormLabel>
-          </Checkbox>
-        );
-      })}
+              onFocus={_onFocus}>
+              <FormLabel
+                fontWeight="400"
+                htmlFor={`${id}_${index}`}
+                display="inline-flex"
+                fontSize="0.9rem">
+                {option.label}
+              </FormLabel>
+            </Checkbox>
+          );
+        }
+      )}
     </CheckboxGroup>
   );
 };

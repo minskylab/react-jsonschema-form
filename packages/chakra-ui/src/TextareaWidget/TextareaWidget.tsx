@@ -1,6 +1,6 @@
-import { Textarea } from '@chakra-ui/core'
-import { WidgetProps } from '@rjsf/core'
-import React from 'react'
+import { Textarea } from "@chakra-ui/react";
+import { WidgetProps } from "@rjsf/core";
+import React from "react";
 
 const TextareaWidget = ({
   id,
@@ -12,11 +12,18 @@ const TextareaWidget = ({
   onBlur,
   onFocus,
   onChange,
-  options
+  options,
 }: WidgetProps) => {
-  const _onChange = ({ target: { value } }: React.ChangeEvent<HTMLTextAreaElement>) => onChange(value === '' ? options.emptyValue : value)
-  const _onBlur = ({ target: { value } }: React.FocusEvent<HTMLTextAreaElement>) => onBlur(id, value)
-  const _onFocus = ({ target: { value } }: React.FocusEvent<HTMLTextAreaElement>) => onFocus(id, value)
+  const _onChange = ({
+    target: { value },
+  }: React.ChangeEvent<HTMLTextAreaElement>) =>
+    onChange(value === "" ? options.emptyValue : value);
+  const _onBlur = ({
+    target: { value },
+  }: React.FocusEvent<HTMLTextAreaElement>) => onBlur(id, value);
+  const _onFocus = ({
+    target: { value },
+  }: React.FocusEvent<HTMLTextAreaElement>) => onFocus(id, value);
 
   return (
     <Textarea
@@ -30,7 +37,7 @@ const TextareaWidget = ({
       onBlur={_onBlur}
       onFocus={_onFocus}
     />
-  )
-}
+  );
+};
 
-export default TextareaWidget
+export default TextareaWidget;

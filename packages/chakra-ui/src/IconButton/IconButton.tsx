@@ -1,22 +1,33 @@
-import React from "react";
-import { IconButton } from "@chakra-ui/core";
-import { MdAdd, MdRemove, MdArrowUpward, MdArrowDownward } from 'react-icons/md'
+import React, { ReactElement } from "react";
+import { IconButton, IconButtonProps } from "@chakra-ui/react";
+import {
+  MdAdd,
+  MdRemove,
+  MdArrowUpward,
+  MdArrowDownward,
+} from "react-icons/md";
 
-const mappings = {
-  "remove": < MdRemove />,
-  "plus": <MdAdd />,
+const mappings: { [key: string]: ReactElement } = {
+  remove: <MdRemove />,
+  plus: <MdAdd />,
   "arrow-up": <MdArrowUpward />,
   "arrow-down": <MdArrowDownward />,
 };
 
-// type TIconButtonProps = IconButtonProps & {
-//   iconMap: string | number | unknown
-// }
+type TIconButtonProps = IconButtonProps & {
+  iconMap: string;
+};
 
-const MyIconButton = (props: { [x: string]: any; iconMap: any; }) => {
-  const { iconMap, ...otherProps } = props;
+const MyIconButton = ({ iconMap, ...otherProps }: TIconButtonProps) => {
+  // const { iconMap, ...otherProps } = props;
   //@ts-ignore
-  return <IconButton {...otherProps} size="sm" icon={mappings[iconMap] ?? <MdAdd />} />;
+  return (
+    <IconButton
+      {...otherProps}
+      size="sm"
+      icon={mappings[iconMap] ?? <MdAdd />}
+    />
+  );
 };
 
 export default MyIconButton;

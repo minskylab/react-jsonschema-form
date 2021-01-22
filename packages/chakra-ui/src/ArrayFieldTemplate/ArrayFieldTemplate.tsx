@@ -1,15 +1,14 @@
 import React, { VoidFunctionComponent } from "react";
 //@ts-ignore
-import { isMultiSelect, getDefaultRegistry, } from "@rjsf/core/lib/utils";
+import { isMultiSelect, getDefaultRegistry } from "@rjsf/core/lib/utils";
 import { ArrayFieldTemplateProps, IdSchema } from "@rjsf/core";
-
 
 /* Chakra Ui components */
 
 /* Local Components */
 import AddButton from "../AddButton/AddButton";
 import IconButton from "../IconButton/IconButton";
-import { Divider, FormLabel, Flex, Box } from "@chakra-ui/core";
+import { Divider, FormLabel, Flex, Box } from "@chakra-ui/react";
 
 const ArrayFieldTemplate = (props: ArrayFieldTemplateProps): JSX.Element => {
   const { schema, registry = getDefaultRegistry() } = props;
@@ -69,13 +68,13 @@ type TIndex = number | string | any;
 type TDefaultArrayItem = ArrayFieldTemplateProps & {
   children: React.ReactChildren;
   hasToolbar: boolean;
-  index: TIndex
+  index: TIndex;
   hasMoveUp: boolean;
   hasMoveDown: boolean;
   hasRemove: boolean;
   onReorderClick: (x: TIndex, y: TIndex) => void;
   onDropIndexClick: (x: TIndex) => VoidFunctionComponent;
-}
+};
 
 // Used in the two templates
 const DefaultArrayItem = ({
@@ -109,8 +108,7 @@ const DefaultArrayItem = ({
           direction={["column", "row"]}
           pb={[2, 2]}
           pl={1}
-          ml={1}
-        >
+          ml={1}>
           {(hasMoveUp || hasMoveDown) && (
             <IconButton
               p={2}
@@ -118,11 +116,12 @@ const DefaultArrayItem = ({
               minHeight="35px"
               minWidth="35px"
               iconMap="arrow-up"
+              aria-label={"array-item-move-up"}
               className="array-item-move-up"
               tabIndex={-1}
-              style={btnStyle}
+              sx={btnStyle}
               isDisabled={disabled || readonly || !hasMoveUp}
-              onClick={onReorderClick(index, index - 1)}
+              onClick={() => onReorderClick(index, index - 1)}
             />
           )}
 
@@ -134,10 +133,11 @@ const DefaultArrayItem = ({
               minHeight="35px"
               minWidth="35px"
               iconMap="arrow-down"
+              aria-label={"array-item-move-down"}
               tabIndex={-1}
-              style={btnStyle}
+              sx={btnStyle}
               isDisabled={disabled || readonly || !hasMoveDown}
-              onClick={onReorderClick(index, index + 1)}
+              onClick={() => onReorderClick(index, index + 1)}
             />
           )}
 
@@ -148,10 +148,11 @@ const DefaultArrayItem = ({
               minHeight="35px"
               minWidth="35px"
               iconMap="remove"
+              aria-label={"array-item-remove"}
               tabIndex={-1}
-              style={btnStyle}
+              sx={btnStyle}
               isDisabled={disabled || readonly}
-              onClick={onDropIndexClick(index)}
+              onClick={() => onDropIndexClick(index)}
             />
           )}
         </Flex>
@@ -187,16 +188,14 @@ const DefaultFixedArrayFieldTemplate = ({
       {(uiSchema["ui:description"] || schema.description) && (
         <div
           className="field-description"
-          key={`field-description-${idSchema.$id}`}
-        >
+          key={`field-description-${idSchema.$id}`}>
           {uiSchema["ui:description"] || schema.description}
         </div>
       )}
 
       <div
         className="row array-item-list"
-        key={`array-item-list-${idSchema.$id}`}
-      >
+        key={`array-item-list-${idSchema.$id}`}>
         {items && items.map(DefaultArrayItem as any)}
       </div>
 
@@ -247,8 +246,7 @@ const DefaultNormalArrayFieldTemplate = ({
       <Flex
         key={`array-item-list-${idSchema.$id}`}
         direction="column"
-        justify="center"
-      >
+        justify="center">
         {items && items.map((p) => DefaultArrayItem(p as any))}
 
         {canAdd && (

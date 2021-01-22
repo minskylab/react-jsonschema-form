@@ -1,6 +1,6 @@
-import React from 'react'
-import { Box, Heading, Divider, HeadingProps } from '@chakra-ui/core'
-import { WidgetProps } from '@rjsf/core'
+import React from "react";
+import { Box, Heading, Divider, HeadingProps } from "@chakra-ui/react";
+import { WidgetProps } from "@rjsf/core";
 
 const TitleField: React.FC<WidgetProps & HeadingProps> = ({ title }) => (
   <Box mb={1} mt={1}>
@@ -9,6 +9,6 @@ const TitleField: React.FC<WidgetProps & HeadingProps> = ({ title }) => (
     </Heading>
     <Divider />
   </Box>
-)
+);
 
-export default TitleField
+export default TitleField;
