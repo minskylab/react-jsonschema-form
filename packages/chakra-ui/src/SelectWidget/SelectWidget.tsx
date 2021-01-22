@@ -1,6 +1,5 @@
 import { Select } from "@chakra-ui/react";
 import React from "react";
-import PropTypes from "prop-types";
 //@ts-ignore
 import { guessType, asNumber } from "@rjsf/core/lib/utils";
 import { WidgetProps } from "@rjsf/core";
@@ -129,30 +128,30 @@ SelectWidget.defaultProps = {
   disabled: false,
   readonly: false,
   multiple: false,
-  onChange: null,
-  onBlur: null,
-  onFocus: null,
+  onChange: () => {},
+  onBlur: () => {},
+  onFocus: () => {},
   // value: null
 };
 
-if (process.env.NODE_ENV !== "production") {
-  SelectWidget.propTypes = {
-    // eslint-disable-next-line react/forbid-prop-types
-    schema: PropTypes.object.isRequired,
-    id: PropTypes.string.isRequired,
-    options: PropTypes.shape({
-      enumOptions: PropTypes.array,
-    }).isRequired,
-    // value: PropTypes.any,
-    required: PropTypes.bool,
-    disabled: PropTypes.bool,
-    readonly: PropTypes.bool,
-    multiple: PropTypes.bool,
-    autofocus: PropTypes.bool,
-    onChange: PropTypes.func,
-    onBlur: PropTypes.func,
-    onFocus: PropTypes.func,
-  };
-}
+// if (process.env.NODE_ENV !== "production") {
+//   SelectWidget.propTypes = {
+//     // eslint-disable-next-line react/forbid-prop-types
+//     schema: PropTypes.object.isRequired,
+//     id: PropTypes.string.isRequired,
+//     options: PropTypes.shape({
+//       enumOptions: PropTypes.array,
+//     }).isRequired,
+//     // value: PropTypes.any,
+//     required: PropTypes.bool,
+//     disabled: PropTypes.bool,
+//     readonly: PropTypes.bool,
+//     multiple: PropTypes.bool,
+//     autofocus: PropTypes.bool,
+//     onChange: PropTypes.func,
+//     onBlur: PropTypes.func,
+//     onFocus: PropTypes.func,
+//   };
+// }
 
 export default SelectWidget;

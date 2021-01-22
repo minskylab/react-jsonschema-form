@@ -1,32 +1,32 @@
 import React from "react";
-import { Input, InputProps } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { WidgetProps } from "@rjsf/core";
-import { JSONSchema7, JSONSchema7Object, JSONSchema7Array } from "json-schema";
+// import { JSONSchema7, JSONSchema7Object, JSONSchema7Array } from "json-schema";
 
-type TWidgetProps = WidgetProps & {
-  schema: JSONSchema7 & {
-    examples:
-      | string
-      | number
-      | boolean
-      | JSONSchema7Object
-      | JSONSchema7Array
-      | string[]
-      | any;
-  };
-};
+// type TWidgetProps = WidgetProps & {
+//   schema: JSONSchema7 & {
+//     examples:
+//       | string
+//       | number
+//       | boolean
+//       | JSONSchema7Object
+//       | JSONSchema7Array
+//       | string[]
+//       | any;
+//   };
+// };
 
-type ExtInputProps = InputProps & {
-  list: string | undefined;
-  // onChange: any;
-  // onBlur: any;
-  // onFocus: any;
-};
+// type ExtInputProps = InputProps & {
+//   list: string | undefined;
+//   // onChange: any;
+//   // onBlur: any;
+//   // onFocus: any;
+// };
 
-type TBaseInput = TWidgetProps & ExtInputProps;
+// type TBaseInput = TWidgetProps & ExtInputProps;
 
-const BaseInput: React.FC<TBaseInput> = ({ id, ...props }) => {
+const BaseInput: React.FC<WidgetProps> = ({ id, ...props }) => {
   // Note: since React 15.2.0 we can't forward unknown element attributes, so we
   // exclude the "options" and "schema" ones here.
   if (!id) {
@@ -118,17 +118,6 @@ const BaseInput: React.FC<TBaseInput> = ({ id, ...props }) => {
           ((event) => onFocus(inputProps.id as string, event.target.value))
         }
       />
-      {schema.examples ? (
-        <datalist id={`examples_${inputProps.id}`}>
-          {Array.from(
-            new Set(
-              schema.examples.concat(schema.default ? [schema.default] : [])
-            )
-          ).map((example: any) => (
-            <option key={example} value={example} />
-          ))}
-        </datalist>
-      ) : null}
     </>
   );
 };

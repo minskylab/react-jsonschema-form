@@ -1,13 +1,14 @@
-import BaseInput from '../BaseInput/BaseInput'
-import CheckboxesWidget from '../CheckboxesWidget/CheckboxesWidget'
-import CheckboxWidget from '../CheckboxWidget/CheckboxWidget'
-import RadioWidget from '../RadioWidget/RadioWidget'
-import RangeWidget from '../RangeWidget/RangeWidget'
-import SelectWidget from '../SelectWidget/SelectWidget'
-import TextareaWidget from '../TextareaWidget/TextareaWidget'
-import UpDownWidget from '../UpDownWidget/UpDownWidget'
+import { Widget } from "@rjsf/core";
+import BaseInput from "../BaseInput/BaseInput";
+import CheckboxesWidget from "../CheckboxesWidget/CheckboxesWidget";
+import CheckboxWidget from "../CheckboxWidget/CheckboxWidget";
+import RadioWidget from "../RadioWidget/RadioWidget";
+import RangeWidget from "../RangeWidget/RangeWidget";
+import SelectWidget from "../SelectWidget/SelectWidget";
+import TextareaWidget from "../TextareaWidget/TextareaWidget";
+import UpDownWidget from "../UpDownWidget/UpDownWidget";
 
-const widgets = {
+const widgets: { [k: string]: Widget } = {
   BaseInput,
   CheckboxWidget,
   CheckboxesWidget,
@@ -15,7 +16,7 @@ const widgets = {
   RangeWidget,
   select: SelectWidget,
   TextareaWidget,
-  UpDownWidget
-}
+  UpDownWidget,
+};
 
-export default widgets
+export default widgets;

@@ -1,17 +1,18 @@
-import ArrayFieldTemplate from '../ArrayFieldTemplate'
-import ErrorList from '../ErrorList'
-import Fields from '../Fields'
-import FieldTemplate from '../FieldTemplate'
-import ObjectFieldTemplate from '../ObjectFieldTemplate'
-import Widgets from '../Widgets'
+import { ThemeProps } from "@rjsf/core";
+import ArrayFieldTemplate from "../ArrayFieldTemplate";
+import ErrorList from "../ErrorList";
+import Fields from "../Fields";
+import FieldTemplate from "../FieldTemplate";
+import ObjectFieldTemplate from "../ObjectFieldTemplate";
+import Widgets from "../Widgets";
 
-const Theme = {
+const Theme: ThemeProps = {
   ArrayFieldTemplate,
   fields: Fields,
   FieldTemplate,
   ObjectFieldTemplate,
   widgets: Widgets,
-  ErrorList
-}
+  ErrorList,
+};
 
-export default Theme
+export default Theme;

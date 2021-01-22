@@ -1,9 +1,10 @@
-import DescriptionField from '../DescriptionField/DescriptionField'
-import TitleField from '../TitleField/TitleField'
+import { Field } from "@rjsf/core";
+import DescriptionField from "../DescriptionField/DescriptionField";
+import TitleField from "../TitleField/TitleField";
 
-const fields = {
+const fields: { [k: string]: Field } = {
   DescriptionField,
-  TitleField
-}
+  TitleField,
+};
 
-export default fields
+export default fields;
